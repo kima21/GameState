@@ -2,7 +2,14 @@ package com.example.ashley.gamestate;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
+/**
+ * Main Activity Class for Uno
+ *
+ * @author Andrew, Meredith, Ashley
+ * @date October 2018
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -11,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void onClick(View button){
+        //TODO
+    }
 
 
 
