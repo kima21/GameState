@@ -5,13 +5,11 @@ import android.graphics.Color;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-/**
- * Card Class for Uno
- *
- * @author Andrew, Meredith, Ashley
- * @date October 2018
- */
+
 public class Card {
+    int[] allCard;
 
-
+//Color to int transition
+    int red = Color.RED;
+    
 }
