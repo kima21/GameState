@@ -11,13 +11,4 @@ public class GameState {
     ArrayList<Card> hand1 = new ArrayList<Card>(7);
     ArrayList<Card> hand2 = new ArrayList<Card>(7);
     Card discardPile;
-
-    /*@Override
-    public String toString(GameState g)
-    {
-        int i;
-        for(i = 0; i<108; i++) {
-            System.out.print();
-        }
-    }*/
 }

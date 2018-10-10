@@ -5,8 +5,6 @@ import android.graphics.Color;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-
-
 public class Card {
     private int color;
     private int value;
