@@ -3,6 +3,7 @@ package com.example.ashley.gamestate;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 /**
  * Main Activity Class for Uno
@@ -22,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
         //TODO
     }
 
+        //TODO fix the button ID
+//need to find the listener
+        GameState gameState = new GameState();
+        //After creating the listener, I have to connect it
+        Button runTestButton = (Button)findViewByID(R.id.runTestButton);
 
 
-}
+
+
+    }
+
