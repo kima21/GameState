@@ -1,9 +1,4 @@
-package com.example.ashley.gamestate;
-
-import android.graphics.Color;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+package com.example.ashley.gamestate.uno;
 
 /**
  * Card Class for Uno
