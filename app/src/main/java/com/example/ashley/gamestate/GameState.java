@@ -17,8 +17,6 @@ public class GameState {
     ArrayList<Card> hand2 = new ArrayList<Card>(7);
     Card discardPile;
 
-
-
     public String getGameState(){
         return "Player ID: " + playerId + ", Deck Size: " + deckSize + ", Turn: " + turn;
     }
@@ -29,7 +27,20 @@ public class GameState {
      */
     @Override
     public String toString(){
-        return "[" +getGameState()+ "]";
+        int i;
+        String out= "";
+        for(i = 0; i < 108; i++){
+            out = out+deck[i].getColor()+" "+deck[i].getValue()+" "+deck[i].getType()+" "+idArr[i]+" ";
+        }
+        out = out+deckSize+" "+turn+" "+" "+discardPile.getColor()+" "+discardPile.getValue()+" "+discardPile.getType();
+        for(i = 0; i < hand1.size(); i++){
+            out = out+" "+hand1.get(i).getColor()+" "+hand1.get(i).getValue()+" "+hand1.get(i).getType()+" ";
+        }
+        for(i = 0; i < hand2.size(); i++){
+            out = out+" "+hand2.get(i).getColor()+" "+hand2.get(i).getValue()+" "+hand2.get(i).getType()+" ";
+        }
+        out = out+playerId;
+        return out;
     }
 
 }
