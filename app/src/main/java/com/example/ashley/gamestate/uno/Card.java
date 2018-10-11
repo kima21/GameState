@@ -11,6 +11,7 @@ public class Card {
     int value;
     char type;
     int color;
+    String id;
 
     public Card()
     {
@@ -41,6 +42,10 @@ public class Card {
         return color;
     }
 
+    public String getId(){
+        return id;
+    }
+
     public void setValue(int value)
     {
         this.value = value;
@@ -54,5 +59,9 @@ public class Card {
     public void setColor(int color)
     {
         this.color = color;
+    }
+
+    public void setId(String i) {
+        this.id = i;
     }
 }
