@@ -1,8 +1,8 @@
 package com.example.ashley.gamestate.game.infoMsg;
 
-import java.io.Serializable;
+import com.example.ashley.gamestate.game.Game;
 
-import edu.up.cs301.game.Game;
+import java.io.Serializable;
 
 /**
  * An informational message that is sent from the game to a player.  The

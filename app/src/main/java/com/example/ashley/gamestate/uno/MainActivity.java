@@ -41,9 +41,9 @@ public class MainActivity extends GameMainActivity {
 
         //TODO fix the button ID
 //need to find the listener
-        GameState gameState = new GameState();
+        State gameState = new State();
         //After creating the listener, I have to connect it
-        Button runTestButton = (Button)findViewByID(R.id.runTestButton);
+        Button runTestButton = (Button)findViewById(R.id.runButton);
 
 
 
