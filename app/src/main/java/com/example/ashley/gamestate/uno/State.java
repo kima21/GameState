@@ -41,10 +41,7 @@ public class State {
 
         //number cards with value 0
         for (i = 0; i < 4; i++) {
-            deck[i].setColor(i);
-            deck[i].setValue(0);
-            deck[i].setType('n');
-            deck[i].setId("card" + i);
+            deck[i] = new Card(i, 0, 'n',"card"+i);
         }
 
         //number cards with values 1-9
@@ -52,10 +49,7 @@ public class State {
             for (n = 0; n < 2; n++) {
                 for (k = 0; k < 10; k++) {
                     for (j = 0; j < 4; j++) {
-                        deck[i].setColor(j);
-                        deck[i].setValue(k);
-                        deck[i].setType('n');
-                        deck[i].setId("card" + i);
+                        deck[i] = new Card(j, k, 'n',"card"+i);
                         i++;
                     }
                 }
@@ -66,10 +60,7 @@ public class State {
         while (i < 84) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i].setColor(j);
-                    deck[i].setValue(0);
-                    deck[i].setType('s');
-                    deck[i].setId("card" + i);
+                    deck[i] = new Card(j, 0, 's',"card"+i);
                     i++;
                 }
             }
@@ -79,10 +70,7 @@ public class State {
         while (i < 92) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i].setColor(j);
-                    deck[i].setValue(0);
-                    deck[i].setType('d');
-                    deck[i].setId("card" + i);
+                    deck[i] = new Card(j, 0, 'd',"card"+i);
                     i++;
                 }
             }
@@ -92,10 +80,7 @@ public class State {
         while (i < 100) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i].setColor(j);
-                    deck[i].setValue(0);
-                    deck[i].setType('r');
-                    deck[i].setId("card" + i);
+                    deck[i] = new Card(j, 0, 'r',"card"+i);
                     i++;
                 }
             }
@@ -104,10 +89,7 @@ public class State {
         //wild cards
         while (i < 104) {
             for (j = 0; j < 4; j++) {
-                deck[i].setColor(4);
-                deck[i].setValue(0);
-                deck[i].setType('w');
-                deck[i].setId("card" + i);
+                deck[i] = new Card(4, 0, 'w',"card"+i);
                 i++;
             }
         }
@@ -115,9 +97,7 @@ public class State {
         //wild draw 4 cards
         while (i < 108) {
             for (j = 0; j < 4; j++) {
-                deck[i].setColor(4);
-                deck[i].setValue(0);
-                deck[i].setType('d');
+                deck[i] = new Card(4, 0, 'd',"card"+i);
                 deck[i].setId("card" + i);
                 i++;
             }
@@ -176,6 +156,23 @@ public class State {
     //Method to get a formatted String describing the basic game state
     public String getGameState() {
         return "Player 1 ID: " + player1Id + "Player 2 ID: " + player2Id + ", Deck Size: " + deckSize + ", Turn: " + turn;
+    }
+
+    //set/get methods for the player IDs
+    public void setPlayer1Id(int pid){
+        player1Id = pid;
+    }
+
+    public int getPlayer1Id(){
+        return player1Id;
+    }
+
+    public void setPlayer2Id(int pid){
+        player2Id = pid;
+    }
+
+    public int getPlayer2Id(){
+        return player2Id;
     }
 
     /**

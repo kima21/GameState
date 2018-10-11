@@ -13,18 +13,12 @@ public class Card {
     int color;
     String id;
 
-    public Card()
+    public Card(int c, int v, char t, String i)
     {
-        value = 0;
-        type = ' ';
-        color = 0;
-    }
-
-    public Card(Card card)
-    {
-        value = getValue();
-        type = getType();
-        color = getColor();
+        color = c;
+        value = v;
+        type = t;
+        id = i;
     }
 
     public int getValue()
@@ -46,19 +40,19 @@ public class Card {
         return id;
     }
 
-    public void setValue(int value)
+    public void setValue(int v)
     {
-        this.value = value;
+        this.value = v;
     }
 
-    public void setType(char type)
+    public void setType(char t)
     {
-        this.type = type;
+        this.type = t;
     }
 
-    public void setColor(int color)
+    public void setColor(int c)
     {
-        this.color = color;
+        this.color = c;
     }
 
     public void setId(String i) {
