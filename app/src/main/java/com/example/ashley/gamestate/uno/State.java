@@ -30,6 +30,7 @@ public class State {
             drawCard(hand2);
         }
         discardPile[0] = deck[0];
+        deck[0] = null;
         for(i = 1; i < 108; i++){
             deck[i-1] = deck[i];
             deck[i] = null;
