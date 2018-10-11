@@ -1,8 +1,8 @@
 package com.example.ashley.gamestate.game.actionMsg;
 
-import java.io.Serializable;
+import com.example.ashley.gamestate.game.GamePlayer;
 
-import edu.up.cs301.game.GamePlayer;
+import java.io.Serializable;
 
 /**
  * An action for a generic game.  A game action is something that a player

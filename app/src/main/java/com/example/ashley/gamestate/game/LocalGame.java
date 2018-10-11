@@ -5,18 +5,19 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import edu.up.cs301.game.actionMsg.GameAction;
-import edu.up.cs301.game.actionMsg.GameOverAckAction;
-import edu.up.cs301.game.actionMsg.MyNameIsAction;
-import edu.up.cs301.game.actionMsg.ReadyAction;
-import edu.up.cs301.game.actionMsg.TimerAction;
-import edu.up.cs301.game.infoMsg.BindGameInfo;
-import edu.up.cs301.game.infoMsg.GameOverInfo;
-import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
-import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
-import edu.up.cs301.game.infoMsg.StartGameInfo;
-import edu.up.cs301.game.util.GameTimer;
-import edu.up.cs301.game.util.Tickable;
+import com.example.ashley.gamestate.game.actionMsg.GameAction;
+import com.example.ashley.gamestate.game.actionMsg.GameOverAckAction;
+import com.example.ashley.gamestate.game.actionMsg.MyNameIsAction;
+import com.example.ashley.gamestate.game.actionMsg.ReadyAction;
+import com.example.ashley.gamestate.game.actionMsg.TimerAction;
+import com.example.ashley.gamestate.game.infoMsg.BindGameInfo;
+import com.example.ashley.gamestate.game.infoMsg.GameOverInfo;
+import com.example.ashley.gamestate.game.infoMsg.IllegalMoveInfo;
+import com.example.ashley.gamestate.game.infoMsg.NotYourTurnInfo;
+import com.example.ashley.gamestate.game.infoMsg.StartGameInfo;
+import com.example.ashley.gamestate.game.util.GameTimer;
+import com.example.ashley.gamestate.game.util.Tickable;
+
 
 /**
  * A class that knows how to play the game. The data in this class represent the
@@ -58,7 +59,7 @@ public abstract class LocalGame implements Game, Tickable {
 	private int playerFinishedCount = 0; // number of player who have so acknowledged
 	
 	// this game's timer and timer action
-	private GameTimer myTimer = new GameTimer(this);
+	private GameTimer myTimer = new GameTimer((Tickable) this);
 	
 	/**
 	 * Returns the game's timer

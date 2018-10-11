@@ -3,17 +3,20 @@ package com.example.ashley.gamestate.game;
 import android.os.Handler;
 import android.os.Looper;
 
-import edu.up.cs301.game.actionMsg.GameOverAckAction;
-import edu.up.cs301.game.actionMsg.MyNameIsAction;
-import edu.up.cs301.game.actionMsg.ReadyAction;
-import edu.up.cs301.game.infoMsg.BindGameInfo;
-import edu.up.cs301.game.infoMsg.GameInfo;
-import edu.up.cs301.game.infoMsg.GameOverInfo;
-import edu.up.cs301.game.infoMsg.StartGameInfo;
-import edu.up.cs301.game.infoMsg.TimerInfo;
-import edu.up.cs301.game.util.GameTimer;
-import edu.up.cs301.game.util.MessageBox;
-import edu.up.cs301.game.util.Tickable;
+import com.example.ashley.gamestate.game.util.Tickable;
+
+import com.example.ashley.gamestate.game.actionMsg.GameOverAckAction;
+import com.example.ashley.gamestate.game.actionMsg.MyNameIsAction;
+import com.example.ashley.gamestate.game.actionMsg.ReadyAction;
+import com.example.ashley.gamestate.game.infoMsg.BindGameInfo;
+import com.example.ashley.gamestate.game.infoMsg.GameInfo;
+import com.example.ashley.gamestate.game.infoMsg.GameOverInfo;
+import com.example.ashley.gamestate.game.infoMsg.StartGameInfo;
+import com.example.ashley.gamestate.game.infoMsg.TimerInfo;
+import com.example.ashley.gamestate.game.util.GameTimer;
+import com.example.ashley.gamestate.game.util.MessageBox;
+import com.example.ashley.gamestate.game.util.Tickable;
+
 
 /**
  * An abstract computerized game player player. This is an abstract class, that
