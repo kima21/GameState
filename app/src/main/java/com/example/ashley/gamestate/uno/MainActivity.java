@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.ashley.gamestate.R;
 import com.example.ashley.gamestate.game.GameConfig;
@@ -19,6 +20,8 @@ import com.example.ashley.gamestate.game.infoMsg.GameState;
  */
 public class MainActivity extends GameMainActivity {
 
+    public TextView noText;
+
     @Override
     public GameConfig createDefaultConfig() {
         return null;
@@ -33,20 +36,29 @@ public class MainActivity extends GameMainActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    public void onClick(View button){
-        //TODO
-    }
-
-        //TODO fix the button ID
-//need to find the listener
-        State gameState = new State();
-        //After creating the listener, I have to connect it
-        Button runTestButton = (Button)findViewById(R.id.runButton);
-
-
-
+        noText = (TextView)findViewById(R.id.editText);
+        noText.setOnClickListener(this);
 
     }
+
+    /** When program starts, EditText gets set to empty
+     *
+     * @param v
+     */
+    @Override
+    public void onClick(View v){
+        noText.setText("");
+
+
+    }
+
+    //TODO fix the button ID
+    //After creating the listener, I have to connect it
+    Button runTestButton = (Button)findViewById(R.id.runButton);
+
+
+
+
+}
 
