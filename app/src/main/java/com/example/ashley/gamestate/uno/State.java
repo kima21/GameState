@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class State {
+
+    /** initialize all the variables that will be used
+     *
+     */
     int playerId;
     int player2Id;
     int deckSize;
@@ -45,20 +49,20 @@ public class State {
         updateDeckSize();
     }
 
-
-
+    /**Deep constructor
+     *
+     * @param state
+     */
     public State(State state){
         playerId = getPlayerId();
+        player2Id = getPlayer2Id();
         deckSize = getDeckSize();
         turn = getTurn();
         nonVisCard = getNonVisCard();
         visCard = getVisCard();
         start = getStart();
         end = getEnd();
-
     }
-
-
 
     //Method to initialize and make the deck
     public void makeDeck() {
@@ -232,89 +236,38 @@ public class State {
     /** getter and setters
      *
      */
-    public int getPlayerId()
-    {
-        return playerId;
-    }
+    public int getPlayerId() { return playerId; }
 
-    public int getPlayer2Id()
-    {
-        return player2Id;
-    }
+    public int getPlayer2Id() { return player2Id; }
 
-    public int getTurn()
-    {
-        return turn;
-    }
+    public int getTurn() { return turn; }
 
-    public int getNonVisCard()
-    {
-        return nonVisCard;
-    }
+    public int getNonVisCard() { return nonVisCard; }
 
-    public int getVisCard()
-    {
-        return visCard;
-    }
+    public int getVisCard() { return visCard; }
 
-    public int getTopCard()
-    {
-        return topCard;
-    }
+    public int getTopCard() { return topCard; }
 
-    public int getStart()
-    {
-        return start;
-    }
+    public int getStart() { return start; }
 
-    public int getEnd()
-    {
-        return end;
-    }
+    public int getEnd() { return end; }
 
-    public void setPlayerId(int playerId)
-    {
-        this.playerId = playerId;
-    }
+    public void setPlayerId(int pId) { this.playerId = pId; }
 
-    public void setPlayer2Id(int player2Id)
-    {
-        this.player2Id = player2Id;
-    }
+    public void setPlayer2Id(int player2Id) { this.player2Id = player2Id; }
 
-    public void setDeckSize(int deckSize)
-    {
-        this.deckSize = deckSize;
-    }
+    public void setDeckSize(int deckSize) { this.deckSize = deckSize; }
 
-    public void setTurn(int turn)
-    {
-        this.turn = turn;
-    }
+    public void setTurn(int turn) { this.turn = turn; }
 
-    public void setNonVisCard(int nonVisCard)
-    {
-        this.nonVisCard = nonVisCard;
-    }
+    public void setNonVisCard(int nonVisCard) { this.nonVisCard = nonVisCard; }
 
-    public void setVisCard(int visCard)
-    {
-        this.visCard = visCard;
-    }
+    public void setVisCard(int visCard) { this.visCard = visCard; }
 
-    public void setTopCard(int topCard)
-    {
-        this.topCard = topCard;
-    }
+    public void setTopCard(int topCard) { this.topCard = topCard; }
 
-    public void setStart(int start)
-    {
-        this.start = start;
-    }
+    public void setStart(int start) { this.start = start; }
 
-    public void setEnd(int end)
-    {
-        this.end = end;
-    }
+    public void setEnd(int end) { this.end = end; }
 }
 
