@@ -4,36 +4,24 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class State {
-
-    /** initialize all the variables that will be used
-     *
-     */
-    int playerId;
+    int player1Id;
     int player2Id;
     int deckSize;
+    int pileSize;
     int turn;
-    int nonVisCard;
-    int visCard;
-    int topCard;
-    int start;
-    int end;
     Card deck[] = new Card[108];
     ArrayList<Card> hand1 = new ArrayList<Card>(7);
     ArrayList<Card> hand2 = new ArrayList<Card>(7);
-    Card discardPile;
+    Card discardPile[] = new Card[108];
     Random r = new Random();
 
     //Default State constructor
     public State() {
-        playerId = 0;
-        player2Id = 0;
+        player1Id = 0;
+        player2Id = 1;
         deckSize = 108;
+        pileSize = 0;
         turn = 0;
-        nonVisCard = 0;
-        visCard = 0;
-        topCard = 0;
-        start = 0;
-        end = 0;
         makeDeck();
         shuffleDeck();
         int i;
@@ -41,39 +29,23 @@ public class State {
             drawCard(hand1);
             drawCard(hand2);
         }
-        discardPile = deck[0];
+        discardPile[0] = deck[0];
         for(i = 1; i < 108; i++){
             deck[i-1] = deck[i];
             deck[i] = null;
+            discardPile[i] = null;
         }
         updateDeckSize();
+        updatePileSize();
     }
 
-    /**Deep constructor
-     *
-     * @param state
-     */
-    public State(State state){
-        playerId = getPlayerId();
-        player2Id = getPlayer2Id();
-        deckSize = getDeckSize();
-        turn = getTurn();
-        nonVisCard = getNonVisCard();
-        visCard = getVisCard();
-        start = getStart();
-        end = getEnd();
-    }
-
-    //Method to initialize and make the deck
+    //Method to make the deck for a new game
     public void makeDeck() {
         int i, n, k, j;
 
         //number cards with value 0
         for (i = 0; i < 4; i++) {
-            deck[i].setColor(i);
-            deck[i].setValue(0);
-            deck[i].setType('n');
-            deck[i].setId("card" + i);
+            deck[i] = new Card(i, 0, 'n',"card"+i);
         }
 
         //number cards with values 1-9
@@ -81,10 +53,7 @@ public class State {
             for (n = 0; n < 2; n++) {
                 for (k = 0; k < 10; k++) {
                     for (j = 0; j < 4; j++) {
-                        deck[i].setColor(j);
-                        deck[i].setValue(k);
-                        deck[i].setType('n');
-                        deck[i].setId("card" + i);
+                        deck[i] = new Card(j, k, 'n',"card"+i);
                         i++;
                     }
                 }
@@ -95,10 +64,7 @@ public class State {
         while (i < 84) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i].setColor(j);
-                    deck[i].setValue(0);
-                    deck[i].setType('s');
-                    deck[i].setId("card" + i);
+                    deck[i] = new Card(j, 0, 's',"card"+i);
                     i++;
                 }
             }
@@ -108,10 +74,7 @@ public class State {
         while (i < 92) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i].setColor(j);
-                    deck[i].setValue(0);
-                    deck[i].setType('d');
-                    deck[i].setId("card" + i);
+                    deck[i] = new Card(j, 0, 'd',"card"+i);
                     i++;
                 }
             }
@@ -121,10 +84,7 @@ public class State {
         while (i < 100) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i].setColor(j);
-                    deck[i].setValue(0);
-                    deck[i].setType('r');
-                    deck[i].setId("card" + i);
+                    deck[i] = new Card(j, 0, 'r',"card"+i);
                     i++;
                 }
             }
@@ -133,10 +93,7 @@ public class State {
         //wild cards
         while (i < 104) {
             for (j = 0; j < 4; j++) {
-                deck[i].setColor(4);
-                deck[i].setValue(0);
-                deck[i].setType('w');
-                deck[i].setId("card" + i);
+                deck[i] = new Card(4, 0, 'w',"card"+i);
                 i++;
             }
         }
@@ -144,9 +101,7 @@ public class State {
         //wild draw 4 cards
         while (i < 108) {
             for (j = 0; j < 4; j++) {
-                deck[i].setColor(4);
-                deck[i].setValue(0);
-                deck[i].setType('d');
+                deck[i] = new Card(4, 0, 'd',"card"+i);
                 deck[i].setId("card" + i);
                 i++;
             }
@@ -188,6 +143,20 @@ public class State {
         }
     }
 
+    //Method to update pileSize
+    public void updatePileSize(){
+        int i = 0;
+        while(discardPile[i] != null){
+            i++;
+        }
+        pileSize = i;
+    }
+
+    //Method to get the discard pile's size
+    public int getPileSize(){
+        return pileSize;
+    }
+
     //Method to update deckSize
     public void updateDeckSize(){
         int i = 0;
@@ -202,72 +171,99 @@ public class State {
         return deckSize;
     }
 
+    //Method to play a card from the hand
+    public void playCard(ArrayList<Card> hand, Card c){
+        hand.remove(c);
+        discardPile[getPileSize()+1] = c;
+        updatePileSize();
+    }
+
+    //Method to see if UNO can be called for a hand.
+    public boolean isUno(ArrayList<Card> hand){
+        if(hand.size() == 1) {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    //get method for the size of a hand
+    public int getHandSize(ArrayList<Card> hand){
+        return hand.size();
+    }
+
     //Method to get a formatted String describing the basic game state
     public String getGameState() {
-        return "Player 1 ID: " + playerId + "Player 2 ID: " + player2Id + ", Deck Size: " + deckSize + ", Turn: " + turn;
+        return "Player 1 ID: " + player1Id + "Player 2 ID: " + player2Id + ", Deck Size: " + deckSize + ", Turn: " + turn;
+    }
+
+    //Method to check if the deck is empty and makes and shuffles a new one from the pile if it is
+    public void checkIsEmpty(){
+        int count = 0;
+        int i;
+        if(deckSize == 0){
+            while(discardPile[count] != null) {
+                count++;
+            }
+            for(i = 0; i < count-1; i++){
+                deck[i] = discardPile[i];
+                discardPile[i] = null;
+            }
+            discardPile[0] = discardPile[count];
+            updatePileSize();
+            updateDeckSize();
+            shuffleDeck();
+        }
+    }
+
+    //set/get methods for the player IDs
+    public void setPlayer1Id(int pid){
+        player1Id = pid;
+    }
+
+    public int getPlayer1Id(){
+        return player1Id;
+    }
+
+    public void setPlayer2Id(int pid){
+        player2Id = pid;
+    }
+
+    public int getPlayer2Id(){
+        return player2Id;
     }
 
     /**
      * toString
      *
-     * @return Game State in String Form
+     * @return Game State
      */
     @Override
     public String toString() {
-        int i;
+        int i = 0;
         updateDeckSize();
         String out = "Deck Cards: ";
-        for (i = 0; i < 108; i++) {
-            out = out + "ID: "+deck[i].getId() + " Value: " + deck[i].getValue()
-                    + " Type: " + deck[i].getType() + " Color: " + deck[i].getColor() + ", ";
+        while(deck[i] != null) {
+            out = out + "ID: "+deck[i].getId() + " Value: " + deck[i].getValue() + " Type: " + deck[i].getType() + " Color: " + deck[i].getColor() + ", ";
+            i++;
         }
-        out = out + "Deck size: " + getDeckSize() + " Turns: " + turn + " " + " Discard Pile: ID:" + discardPile.getId() + " Value: " + discardPile.getValue() + " Type: " + discardPile.getType() + " Color: " + discardPile.getColor();
+        i = 0;
+        out = out + " Discard Pile: ";
+        while(discardPile[i] != null) {
+            out = out + "ID: "+ discardPile[i].getId() + " Value: " + discardPile[i].getValue() + " Type: " + discardPile[i].getType() + " Color: " + discardPile[i].getColor();
+            i++;
+        }
+        out = out + "Deck size: " + getDeckSize() + " Discard Pile size: "+ getPileSize() + " Turns: " + turn + " ";
         for (i = 0; i < hand1.size(); i++) {
             out = out + "hand1 card"+i+": " + "Color: " + hand1.get(i).getColor() + " Value: " + hand1.get(i).getValue() + " Type: " + hand1.get(i).getType() + " " + "ID: " + hand1.get(i).getId();
         }
         for (i = 0; i < hand2.size(); i++) {
             out = out + "hand2 card"+i+": " + "Color: " + hand2.get(i).getColor() + " Value: " + hand2.get(i).getValue() + " Type: " + hand2.get(i).getType() + " " + "ID: " + hand2.get(i).getId();
         }
-        out = out + "Player 1 ID: "+playerId+" Player 2 ID: "+player2Id;
+        out = out + "Player 1 ID: "+player1Id+" Player 2 ID: "+player2Id;
         return out;
     }
 
-
-    /** getter and setters
-     *
-     */
-    public int getPlayerId() { return playerId; }
-
-    public int getPlayer2Id() { return player2Id; }
-
-    public int getTurn() { return turn; }
-
-    public int getNonVisCard() { return nonVisCard; }
-
-    public int getVisCard() { return visCard; }
-
-    public int getTopCard() { return topCard; }
-
-    public int getStart() { return start; }
-
-    public int getEnd() { return end; }
-
-    public void setPlayerId(int pId) { this.playerId = pId; }
-
-    public void setPlayer2Id(int player2Id) { this.player2Id = player2Id; }
-
-    public void setDeckSize(int deckSize) { this.deckSize = deckSize; }
-
-    public void setTurn(int turn) { this.turn = turn; }
-
-    public void setNonVisCard(int nonVisCard) { this.nonVisCard = nonVisCard; }
-
-    public void setVisCard(int visCard) { this.visCard = visCard; }
-
-    public void setTopCard(int topCard) { this.topCard = topCard; }
-
-    public void setStart(int start) { this.start = start; }
-
-    public void setEnd(int end) { this.end = end; }
 }
-
