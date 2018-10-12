@@ -17,9 +17,7 @@ public abstract class UnoLocalGame extends LocalGame{
     protected int moveCount;
 
     @Override
-    protected void sendUpdatedStateTo(GamePlayer p) {
-
-    }
+    protected void sendUpdatedStateTo(GamePlayer p) { }
 
     @Override
     protected boolean canMove(int playerIdx) {

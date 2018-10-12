@@ -8,6 +8,10 @@ package com.example.ashley.gamestate.uno;
  */
 public class Card {
 
+
+     // two hand. One card in one hand. Two cards in the other hand. Have one card be played and show
+    //that it was added to the discard pile. The discard pile has one more card and the hand now has
+    //one less card
     //initialize all the values that are needed for this class
     int value;
     char type;

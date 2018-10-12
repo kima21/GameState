@@ -12,16 +12,17 @@ import java.util.Random;
 public class State {
 
     //initialize all the variables
-    int player1Id;
+    int player1Id; //dont need player id's, int turn should hold the info.
     int player2Id;
-    int deckSize;
-    int pileSize;
-    int turn;
-    Card deck[] = new Card[108];
+    int deckSize; //extra
+    int pileSize; //extra
+    int turn; //0,1 who's playing
+    Card deck[] = new Card[108];//make into arraylist - shuffling (built in java)
     ArrayList<Card> hand1 = new ArrayList<Card>(7);
     ArrayList<Card> hand2 = new ArrayList<Card>(7);
-    Card discardPile[] = new Card[108];
-    Random r = new Random();
+    Card discardPile[] = new Card[108]; //make into arraylist
+    public static Random r = new Random();
+    //make all variables private
 
     //Default constructor
     public State() {

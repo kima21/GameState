@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 25
     defaultConfig {
         applicationId "com.example.ashley.gamestate"
         minSdkVersion 25
