@@ -3,7 +3,15 @@ package com.example.ashley.gamestate.uno;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Game State Class for Uno
+ *
+ * @author Andrew, Meredith, Ashley
+ * @date October 2018
+ */
 public class State {
+
+    //initialize all the variables
     int player1Id;
     int player2Id;
     int deckSize;
@@ -15,7 +23,6 @@ public class State {
     Card discardPile[] = new Card[108];
     Random r = new Random();
 
-    //Default constructor
     //Default constructor
     public State() {
         player1Id = 0;

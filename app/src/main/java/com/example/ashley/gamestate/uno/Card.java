@@ -26,7 +26,10 @@ public class Card {
 
     /** Deep constructor
      *
-     *
+     * @param c
+     * @param v
+     * @param t
+     * @param i
      */
     public Card(int c, int v, char t, String i)
     {
@@ -36,6 +39,10 @@ public class Card {
         id = " ";
     }
 
+    /** Clone method to copy and return new card for deep constructor
+     *
+     * @return copy of Card class
+     */
     public Card clone(){
 
         return new Card(color, value, type, id);

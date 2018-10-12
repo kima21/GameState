@@ -32,12 +32,18 @@ public class MainActivity extends GameMainActivity {
         return null;
     }
 
+    /** onCreate method
+     *  creates states and updates them
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         noText.setOnClickListener(this);
+
 
         Button runTestButton = (Button)findViewById(R.id.runButton);
         runTestButton.setOnClickListener(new View.OnClickListener(){
@@ -62,9 +68,9 @@ public class MainActivity extends GameMainActivity {
                 noText.append("Updates the discard pile size\n");
                 firstInstance.updateDeckSize();
                 noText.append("Updates the deck size\n");
-                firstInstance.playCard(firstInstance.getHand(1), Card c1);
+                firstInstance.playCard(firstInstance.getHand(1),firstInstance.hand1.get(0));
                 noText.append("lets player 1 play a card\n");
-                firstInstance.playCard(firstInstance.getHand(2), Card c2);
+                firstInstance.playCard(firstInstance.getHand(2), firstInstance.hand2.get(0));
                 noText.append("lets player 2 play a card\n");
                 firstInstance.isUno(firstInstance.getHand(1));
                 noText.append("Checks if player 1 can declare uno\n");

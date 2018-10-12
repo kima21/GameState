@@ -4,6 +4,12 @@ import com.example.ashley.gamestate.game.GamePlayer;
 import com.example.ashley.gamestate.game.LocalGame;
 import com.example.ashley.gamestate.game.actionMsg.GameAction;
 
+/**
+ * Local Game Class for Uno
+ *
+ * @author Andrew, Meredith, Ashley
+ * @date October 2018
+ */
 public abstract class UnoLocalGame extends LocalGame{
 
     // the number of moves that have been played so far, used to
