@@ -16,6 +16,7 @@ public class State {
     Random r = new Random();
 
     //Default constructor
+    //Default constructor
     public State() {
         player1Id = 0;
         player2Id = 1;
@@ -25,14 +26,14 @@ public class State {
         makeDeck();
         shuffleDeck();
         int i;
-        for(i=0; i < 7; i++){
+        for (i = 0; i < 7; i++) {
             drawCard(hand1);
             drawCard(hand2);
         }
         discardPile[0] = deck[0];
         deck[0] = null;
-        for(i = 1; i < 108; i++){
-            deck[i-1] = deck[i];
+        for (i = 1; i < 108; i++) {
+            deck[i - 1] = deck[i];
             deck[i] = null;
             discardPile[i] = null;
         }
@@ -40,10 +41,10 @@ public class State {
         updatePileSize();
     }
 
-    /** Deep Copy Constructor
-     *
+    /**
+     * Deep Copy Constructor
      */
-    public State (State state) {
+    public State(State state) {
         player1Id = state.getPlayer1Id();
         player2Id = state.getPlayer2Id();
         deckSize = state.getDeckSize();
@@ -57,7 +58,7 @@ public class State {
         }
         hand2 = new ArrayList<Card>(7);
         // this for loop creates a clone of every value in arraylist hand2
-        for(Card c : hand2) {
+        for (Card c : hand2) {
             hand2.add(c.clone());
         }
         discardPile = new Card[108];
@@ -71,7 +72,7 @@ public class State {
 
         //number cards with value 0
         for (i = 0; i < 4; i++) {
-            deck[i] = new Card(i, 0, 'n',"card"+i);
+            deck[i] = new Card(i, 0, 'n', "card" + i);
         }
 
         //number cards with values 1-9
@@ -79,7 +80,7 @@ public class State {
             for (n = 0; n < 2; n++) {
                 for (k = 0; k < 10; k++) {
                     for (j = 0; j < 4; j++) {
-                        deck[i] = new Card(j, k, 'n',"card"+i);
+                        deck[i] = new Card(j, k, 'n', "card" + i);
                         i++;
                     }
                 }
@@ -90,7 +91,7 @@ public class State {
         while (i < 84) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i] = new Card(j, 0, 's',"card"+i);
+                    deck[i] = new Card(j, 0, 's', "card" + i);
                     i++;
                 }
             }
@@ -100,7 +101,7 @@ public class State {
         while (i < 92) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i] = new Card(j, 0, 'd',"card"+i);
+                    deck[i] = new Card(j, 0, 'd', "card" + i);
                     i++;
                 }
             }
@@ -110,7 +111,7 @@ public class State {
         while (i < 100) {
             for (k = 0; k < 2; k++) {
                 for (j = 0; j < 4; j++) {
-                    deck[i] = new Card(j, 0, 'r',"card"+i);
+                    deck[i] = new Card(j, 0, 'r', "card" + i);
                     i++;
                 }
             }
@@ -119,7 +120,7 @@ public class State {
         //wild cards
         while (i < 104) {
             for (j = 0; j < 4; j++) {
-                deck[i] = new Card(4, 0, 'w',"card"+i);
+                deck[i] = new Card(4, 0, 'w', "card" + i);
                 i++;
             }
         }
@@ -127,7 +128,7 @@ public class State {
         //wild draw 4 cards
         while (i < 108) {
             for (j = 0; j < 4; j++) {
-                deck[i] = new Card(4, 0, 'd',"card"+i);
+                deck[i] = new Card(4, 0, 'd', "card" + i);
                 deck[i].setId("card" + i);
                 i++;
             }
@@ -135,89 +136,98 @@ public class State {
     }
 
     //Method to shuffle the deck
-    public void shuffleDeck(){
+    public void shuffleDeck() {
         Card temp[] = new Card[108];
         int i;
         int n;
         int index = r.nextInt(108);
         temp[0] = deck[index];
-        for(i = 1;  i < 108; i++){
+        for (i = 1; i < 108; i++) {
             index = r.nextInt(108);
             temp[i] = deck[index];
             //detects if the value from the random index is equal to another one already in temp
-            for(n = 0; n < 108; n++){
-                while(temp[i] == temp[n] && temp[n] != null){
+            for (n = 0; n < 108; n++) {
+                while (temp[i] == temp[n] && temp[n] != null) {
                     index = r.nextInt(108);
                     temp[i] = deck[index];
                 }
             }
         }
         //sets the deck in use to the randomly ordered one
-        for(i = 0; i < 108; i++){
+        for (i = 0; i < 108; i++) {
             deck[i] = temp[i];
         }
     }
 
     //Method to add a card to a specific hand
-    public void drawCard(ArrayList<Card> hand){
+    public void drawCard(ArrayList<Card> hand) {
         int i;
         hand.add(deck[0]);
         deck[0] = null;
-        for(i = 1; i < 108; i++){
-            deck[i-1] = deck[i];
+        for (i = 1; i < 108; i++) {
+            deck[i - 1] = deck[i];
             deck[i] = null;
         }
     }
 
     //Method to update pileSize
-    public void updatePileSize(){
+    public void updatePileSize() {
         int i = 0;
-        while(discardPile[i] != null){
+        while (discardPile[i] != null) {
             i++;
         }
         pileSize = i;
     }
 
     //Method to get the discard pile's size
-    public int getPileSize(){
+    public int getPileSize() {
         return pileSize;
     }
 
     //Method to update deckSize
-    public void updateDeckSize(){
+    public void updateDeckSize() {
         int i = 0;
-        while(deck[i] != null){
+        while (deck[i] != null) {
             i++;
         }
         deckSize = i;
     }
 
     //Method to get the deck size
-    public int getDeckSize(){
+    public int getDeckSize() {
         return deckSize;
     }
 
     //Method to play a card from the hand
-    public void playCard(ArrayList<Card> hand, Card c){
+    public void playCard(ArrayList<Card> hand, Card c) {
         hand.remove(c);
-        discardPile[getPileSize()+1] = c;
+        discardPile[getPileSize() + 1] = c;
         updatePileSize();
     }
 
     //Method to see if UNO can be called for a hand.
-    public boolean isUno(ArrayList<Card> hand){
-        if(hand.size() == 1) {
+    public boolean isUno(ArrayList<Card> hand) {
+        if (hand.size() == 1) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
     //get method for the size of a hand
-    public int getHandSize(ArrayList<Card> hand){
+    public int getHandSize(ArrayList<Card> hand) {
         return hand.size();
+    }
+
+    //Method to get a specified hand
+    public ArrayList<Card> getHand(int i) {
+        if(i == 1) {
+            return hand1;
+        }
+        else if (i == 2){
+            return hand2;
+        }
+        return null;
     }
 
     //Method to get a formatted String describing the basic game state
@@ -226,14 +236,14 @@ public class State {
     }
 
     //Method to check if the deck is empty and makes and shuffles a new one from the pile if it is
-    public void checkIsEmpty(){
+    public void checkIsEmpty() {
         int count = 0;
         int i;
-        if(deckSize == 0){
-            while(discardPile[count] != null) {
+        if (deckSize == 0) {
+            while (discardPile[count] != null) {
                 count++;
             }
-            for(i = 0; i < count-1; i++){
+            for (i = 0; i < count - 1; i++) {
                 deck[i] = discardPile[i];
                 discardPile[i] = null;
             }
@@ -244,38 +254,57 @@ public class State {
         }
     }
 
-    /** selectCard action
+    /**
+     * selectCard action
      *
      * @return true if legal move
      */
-    public boolean selectCard() {
-        return false;
+    public boolean selectCard(int playerId) {
+        if (playerId != turn) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    /** playCard action
+
+    /**
+     * playCard action
      *
      * @return true if legal move
      */
-    public boolean playCard() {
-        return false;
+    public boolean playCard(int player1Id, int player2Id) {
+        if (player1Id != turn) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    /** drawCard action
+    /**
+     * drawCard action
      *
      * @return true if legal move
      */
-    public boolean drawCard() {
-        return false;
+    public boolean drawCard(int player1Id, int player2Id) {
+        if (deckSize == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    /** declareUno action
+    /**
+     * declareUno action
      *
      * @return true if legal move
      */
-    public boolean declareUno() {
-        return false;
+    public boolean declareUno(int playerId) {
+        if(getHandSize(hand1) != 1 || getHandSize(hand2) != 1) {
+            return false;
+        }
+        return true;
     }
-
 
 
     /**
@@ -288,39 +317,51 @@ public class State {
         int i = 0;
         updateDeckSize();
         String out = "Deck Cards: ";
-        while(deck[i] != null) {
-            out = out + "ID: "+deck[i].getId() + " Value: " + deck[i].getValue() + " Type: " + deck[i].getType() + " Color: " + deck[i].getColor() + ", ";
+        while (deck[i] != null) {
+            out = out + "ID: " + deck[i].getId() + " Value: " + deck[i].getValue() + " Type: " + deck[i].getType() + " Color: " + deck[i].getColor() + ", ";
             i++;
         }
         i = 0;
         out = out + " Discard Pile: ";
-        while(discardPile[i] != null) {
-            out = out + "ID: "+ discardPile[i].getId() + " Value: " + discardPile[i].getValue() + " Type: " + discardPile[i].getType() + " Color: " + discardPile[i].getColor();
+        while (discardPile[i] != null) {
+            out = out + "ID: " + discardPile[i].getId() + " Value: " + discardPile[i].getValue() + " Type: " + discardPile[i].getType() + " Color: " + discardPile[i].getColor();
             i++;
         }
-        out = out + "Deck size: " + getDeckSize() + " Discard Pile size: "+ getPileSize() + " Turns: " + turn + " ";
+        out = out + "Deck size: " + getDeckSize() + " Discard Pile size: " + getPileSize() + " Turns: " + turn + " ";
         for (i = 0; i < hand1.size(); i++) {
-            out = out + "hand1 card"+i+": " + "Color: " + hand1.get(i).getColor() + " Value: " + hand1.get(i).getValue() + " Type: " + hand1.get(i).getType() + " " + "ID: " + hand1.get(i).getId();
+            out = out + "hand1 card" + i + ": " + "Color: " + hand1.get(i).getColor() + " Value: " + hand1.get(i).getValue() + " Type: " + hand1.get(i).getType() + " " + "ID: " + hand1.get(i).getId();
         }
         for (i = 0; i < hand2.size(); i++) {
-            out = out + "hand2 card"+i+": " + "Color: " + hand2.get(i).getColor() + " Value: " + hand2.get(i).getValue() + " Type: " + hand2.get(i).getType() + " " + "ID: " + hand2.get(i).getId();
+            out = out + "hand2 card" + i + ": " + "Color: " + hand2.get(i).getColor() + " Value: " + hand2.get(i).getValue() + " Type: " + hand2.get(i).getType() + " " + "ID: " + hand2.get(i).getId();
         }
-        out = out + "Player 1 ID: "+player1Id+" Player 2 ID: "+player2Id;
+        out = out + "Player 1 ID: " + player1Id + " Player 2 ID: " + player2Id;
         return out;
     }
 
 
     //set/get methods
-    public void setPlayer1Id(int pid){ player1Id = pid; }
+    public void setPlayer1Id(int pid) {
+        player1Id = pid;
+    }
 
-    public int getPlayer1Id(){ return player1Id; }
+    public int getPlayer1Id() {
+        return player1Id;
+    }
 
-    public void setPlayer2Id(int pid){ player2Id = pid; }
+    public void setPlayer2Id(int pid) {
+        player2Id = pid;
+    }
 
-    public int getPlayer2Id(){ return player2Id; }
+    public int getPlayer2Id() {
+        return player2Id;
+    }
 
-    public int getTurn(){ return turn; }
+    public int getTurn() {
+        return turn;
+    }
 
-    public void setTurn(int newTurn) { turn = newTurn; }
+    public void setTurn(int newTurn) {
+        turn = newTurn;
+    }
 
 }
