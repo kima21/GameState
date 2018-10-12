@@ -4,7 +4,7 @@ import com.example.ashley.gamestate.game.GamePlayer;
 import com.example.ashley.gamestate.game.LocalGame;
 import com.example.ashley.gamestate.game.actionMsg.GameAction;
 
-public class UnoLocalGame extends LocalGame{
+public abstract class UnoLocalGame extends LocalGame{
 
     // the number of moves that have been played so far, used to
     // determine whether the game is over
@@ -31,8 +31,4 @@ public class UnoLocalGame extends LocalGame{
     }
 
 
-    @Override
-    public void sendAction(GameAction action) {
-
-    }
 }

@@ -15,7 +15,7 @@ public class State {
     Card discardPile[] = new Card[108];
     Random r = new Random();
 
-    //Default State constructor
+    //Default constructor
     public State() {
         player1Id = 0;
         player2Id = 1;
@@ -39,6 +39,31 @@ public class State {
         updateDeckSize();
         updatePileSize();
     }
+
+    /** Deep Copy Constructor
+     *
+     */
+    public State (State state) {
+        player1Id = state.getPlayer1Id();
+        player2Id = state.getPlayer2Id();
+        deckSize = state.getDeckSize();
+        pileSize = state.getPileSize();
+        turn = state.getTurn();
+        deck = new Card[108];
+        hand1 = new ArrayList<Card>(7);
+        // this for loop creates a clone of every value in arraylist hand1
+        for (Card c : hand1) {
+            hand1.add(c.clone());
+        }
+        hand2 = new ArrayList<Card>(7);
+        // this for loop creates a clone of every value in arraylist hand2
+        for(Card c : hand2) {
+            hand2.add(c.clone());
+        }
+        discardPile = new Card[108];
+
+    }
+
 
     //Method to make the deck for a new game
     public void makeDeck() {
@@ -219,22 +244,39 @@ public class State {
         }
     }
 
-    //set/get methods for the player IDs
-    public void setPlayer1Id(int pid){
-        player1Id = pid;
+    /** selectCard action
+     *
+     * @return true if legal move
+     */
+    public boolean selectCard() {
+        return false;
     }
 
-    public int getPlayer1Id(){
-        return player1Id;
+    /** playCard action
+     *
+     * @return true if legal move
+     */
+    public boolean playCard() {
+        return false;
     }
 
-    public void setPlayer2Id(int pid){
-        player2Id = pid;
+    /** drawCard action
+     *
+     * @return true if legal move
+     */
+    public boolean drawCard() {
+        return false;
     }
 
-    public int getPlayer2Id(){
-        return player2Id;
+    /** declareUno action
+     *
+     * @return true if legal move
+     */
+    public boolean declareUno() {
+        return false;
     }
+
+
 
     /**
      * toString
@@ -266,5 +308,19 @@ public class State {
         out = out + "Player 1 ID: "+player1Id+" Player 2 ID: "+player2Id;
         return out;
     }
+
+
+    //set/get methods
+    public void setPlayer1Id(int pid){ player1Id = pid; }
+
+    public int getPlayer1Id(){ return player1Id; }
+
+    public void setPlayer2Id(int pid){ player2Id = pid; }
+
+    public int getPlayer2Id(){ return player2Id; }
+
+    public int getTurn(){ return turn; }
+
+    public void setTurn(int newTurn) { turn = newTurn; }
 
 }

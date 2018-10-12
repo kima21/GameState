@@ -26,17 +26,19 @@ public class Card {
 
     /** Deep constructor
      *
-     * @param c
-     * @param v
-     * @param t
-     * @param i
+     *
      */
     public Card(int c, int v, char t, String i)
     {
         color = c;
         value = v;
-        type = t;
-        id = i;
+        type = ' ';
+        id = " ";
+    }
+
+    public Card clone(){
+
+        return new Card(color, value, type, id);
     }
 
     //getter and setter methods

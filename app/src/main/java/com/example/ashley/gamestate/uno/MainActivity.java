@@ -40,6 +40,8 @@ public class MainActivity extends GameMainActivity {
         noText = (TextView)findViewById(R.id.editText);
         noText.setOnClickListener(this);
 
+        Button runTestButton = (Button)findViewById(R.id.runButton);
+
     }
 
     /** When program starts, EditText gets set to empty
@@ -50,12 +52,12 @@ public class MainActivity extends GameMainActivity {
     public void onClick(View v){
         noText.setText("");
 
+        State firstInstance = new State();
+
+
 
     }
 
-    //TODO fix the button ID
-    //After creating the listener, I have to connect it
-    Button runTestButton = (Button)findViewById(R.id.runButton);
 
 
 
