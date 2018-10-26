@@ -17,12 +17,17 @@ public class State {
     int deckSize; //extra
     int pileSize; //extra
     int turn; //0,1 who's playing
+    int totalCards = 180; //total amount of cards in deck
+    int cardsInHand = 7; //the amount of cards in the players hand
     Card deck[] = new Card[108];//make into arraylist - shuffling (built in java)
-    ArrayList<Card> hand1 = new ArrayList<Card>(7);
-    ArrayList<Card> hand2 = new ArrayList<Card>(7);
+    //External Source: //docs.oracle.com/javase/7/docs/api/java/util/ArrayList.html
+    //we referenced the array list doc to help with writing an array list
+    ArrayList<Card> hand1 = new ArrayList<Card>(cardsInHand);
+    ArrayList<Card> hand2 = new ArrayList<Card>(cardsInHand);
     Card discardPile[] = new Card[108]; //make into arraylist
     public static Random r = new Random();
     //make all variables private
+
 
     //Default constructor
     public State() {
@@ -94,7 +99,8 @@ public class State {
                 }
             }
         }
-
+        //External Source: //www.unorules.com
+        // We used this site to help understand the rules of the inidividual cards
         //skip cards
         while (i < 84) {
             for (k = 0; k < 2; k++) {
